@@ -1,0 +1,19 @@
+services:
+  gallery-dl-bot:
+    build: .
+    container_name: gallery-dl-bot
+    restart: unless-stopped
+    volumes:
+      - ./config/gallery-dl.conf:/config/gallery-dl.conf
+      - ./downloads:/downloads
+    ports:
+      - "8088:8080"
+    env_file:
+      - .env
+    mem_limit: 256m
+    cpus: "0.5"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

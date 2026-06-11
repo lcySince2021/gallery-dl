@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Gallery-DL Downloader",
+  "version": "1.0",
+  "description": "一键发送当前页面链接到 Telegram Bot 下载",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": [
+    "http://YOUR_SERVER_IP:8088/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://twitter.com/*",
+        "https://x.com/*",
+        "https://www.instagram.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "发送到 Gallery-DL"
+  },
+  "options_page": "options.html"
+}
