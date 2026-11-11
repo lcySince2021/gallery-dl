@@ -36,6 +36,8 @@
       transition: background 0.15s;
     }
     button:hover { background: #2563eb; }
+    .actions { display: flex; gap: 8px; }
+    .actions button[hidden] { display: none; }
     button:disabled { background: #52525b; cursor: default; }
     .status {
       margin-top: 8px;
@@ -56,11 +58,28 @@
       text-decoration: none;
     }
     .settings-link a:hover { color: #a1a1aa; }
+    .mode-title { font-size: 13px; color: #e4e4e7; margin-bottom: 6px; }
+    .mode-desc { font-size: 11px; color: #71717a; margin-top: 6px; margin-bottom: 10px; }
+    .seg { display: flex; background: #27272a; border: 1px solid #3f3f46; border-radius: 6px; padding: 2px; }
+    .seg label { flex: 1; margin: 0; }
+    .seg input { position: absolute; opacity: 0; width: 0; height: 0; margin: 0; padding: 0; border: 0; }
+    .seg span { display: block; text-align: center; padding: 6px 0; font-size: 12px; color: #a1a1aa; border-radius: 4px; cursor: pointer; transition: background .15s, color .15s; }
+    .seg input:checked + span { background: #3b82f6; color: #fff; }
   </style>
 </head>
 <body>
+  <div class="mode-title">下载方式</div>
+  <div class="seg">
+    <label><input type="radio" name="mode" value="bot"><span>发送到 Bot</span></label>
+    <label><input type="radio" name="mode" value="local"><span>下载到本地</span></label>
+    <label><input type="radio" name="mode" value="ask"><span>每次询问</span></label>
+  </div>
+  <div class="mode-desc" id="modeDesc"></div>
   <div class="url-box" id="url">正在获取当前页面...</div>
-  <button id="btn">发送下载</button>
+  <div class="actions">
+    <button id="btnBot">发送到 Bot</button>
+    <button id="btnLocal">下载到本地</button>
+  </div>
   <div class="status" id="status"></div>
   <div class="settings-link"><a id="opt" href="#">⚙ 设置</a></div>
   <script src="popup.js"></script>

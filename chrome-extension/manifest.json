@@ -2,11 +2,19 @@
   "manifest_version": 3,
   "name": "Gallery-DL Downloader",
   "version": "1.0",
-  "description": "一键发送当前页面链接到 Telegram Bot 下载",
-  "permissions": ["activeTab", "storage"],
-  "host_permissions": [
-    "http://YOUR_SERVER_IP:8088/*"
+  "description": "一键下载 Twitter/X、Instagram 媒体：发送到 Telegram Bot 或直接保存到本地",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "downloads"
   ],
+  "host_permissions": [
+    "http://192.168.123.7:8088/*",
+    "https://cdn.syndication.twimg.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": [
@@ -14,7 +22,9 @@
         "https://x.com/*",
         "https://www.instagram.com/*"
       ],
-      "js": ["content.js"],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_idle"
     }
   ],
